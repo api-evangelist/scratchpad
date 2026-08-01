@@ -1,8 +1,14 @@
 aid: scratchpad
 name: Scratchpad
-description: 'Scratchpad is a company surfaced as a portfolio company of accel, craft-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: productivity. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: 'Scratchpad is an AI-powered workspace for sales teams that sits on top of Salesforce,
+  reducing the friction of keeping the CRM up to date. Reps manage notes, opportunities, tasks, and
+  pipeline from a fast, lightweight interface that syncs everything back to Salesforce, with AI-native
+  sheets and Kanban boards, an AI notetaker and call recorder, automated field updates, executive
+  summaries, and CRM hygiene monitoring. The product connects to Salesforce via API and inherits its
+  permissions and guardrails, and integrates with Slack, Zoom, and Gong. Founded in 2019 by Pouyan
+  Salehi and Cyrus Karbassiyoon in San Francisco, and backed by Accel and Craft Ventures. Scratchpad
+  does not publish its own public developer API; it is a Salesforce-native application. This profile
+  captures its identity, commercial surface, and security posture for the API Evangelist network.'
 url: https://raw.githubusercontent.com/api-evangelist/scratchpad/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +17,30 @@ x-backed-by:
 - craft-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Requires approval
+  confidence: medium
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://cdn.prod.website-files.com/5ec58e445ff9859286816f53/689655f9a5b2bc821c89f95e_Scratchpad%20-%20The%20AI%20workspace%20for%20sellers.png
 tags:
 - Company
 - Productivity
+- Sales
+- CRM
+- Salesforce
+- Revenue Operations
+- Artificial Intelligence
+- SaaS
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -25,4 +49,31 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://scratchpad.com
+  url: https://www.scratchpad.com
+- type: Pricing
+  url: https://www.scratchpad.com/pricing
+- type: Blog
+  url: https://www.scratchpad.com/blog
+- type: Support
+  url: https://help.scratchpad.com/en/
+- type: TermsOfService
+  url: https://www.scratchpad.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.scratchpad.com/legal/privacy-policy
+- type: StatusPage
+  url: https://status.scratchpad.com/
+- type: Security
+  url: https://www.scratchpad.com/security
+- type: Compliance
+  url: https://www.scratchpad.com/security
+- type: TrustCenter
+  url: security/scratchpad-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/scratchpad-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/scratchpad-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 3
+  pass: local-v1
