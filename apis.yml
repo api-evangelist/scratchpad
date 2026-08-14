@@ -7,8 +7,12 @@ description: 'Scratchpad is an AI-powered workspace for sales teams that sits on
   summaries, and CRM hygiene monitoring. The product connects to Salesforce via API and inherits its
   permissions and guardrails, and integrates with Slack, Zoom, and Gong. Founded in 2019 by Pouyan
   Salehi and Cyrus Karbassiyoon in San Francisco, and backed by Accel and Craft Ventures. Scratchpad
-  does not publish its own public developer API; it is a Salesforce-native application. This profile
-  captures its identity, commercial surface, and security posture for the API Evangelist network.'
+  publishes no REST API for its own Salesforce-native workspace, but the same company ships Clearskies
+  (clearskies.cc), a Customer Context Graph delivered as a single remote MCP server at
+  https://mcp.clearskies.cc/mcp, OAuth-protected with dynamic client registration and PKCE, that
+  unifies Salesforce, HubSpot, Gong, Scratchpad, Gmail/Outlook, calendars, Slack, Linear, Jira and
+  Pylon behind one endpoint for Claude, ChatGPT, Cursor, n8n and Retool. This profile captures
+  Scratchpad identity, its commercial surface, its agent surface, and its security posture.'
 url: https://raw.githubusercontent.com/api-evangelist/scratchpad/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -18,19 +22,26 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 accessModel:
-  pricing: unknown
-  onboarding: approval
-  trial: false
-  try_now: false
-  public: false
-  label: Requires approval
-  confidence: medium
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  pricing: freemium
+  onboarding: self-service
+  trial: true
+  try_now: true
+  public: true
+  label: Free tier, self-service sign-up
+  confidence: high
+  source:
+  - https://www.scratchpad.com/pricing
+  - https://clearskies.cc/pricing
+  generated: '2026-08-13'
+  method: searched
+  note: >-
+    Scratchpad publishes a $0 Free plan (3 workspace views, 10 recorder hours/month, 100 AI credits per
+    user/month) and Clearskies gives every new workspace $250 in credits with no ongoing cost to start.
+    The MCP endpoint itself is OAuth-protected and requires a Clearskies workspace, so the agent surface
+    is customer-only even though sign-up is self-service.
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 image: https://cdn.prod.website-files.com/5ec58e445ff9859286816f53/689655f9a5b2bc821c89f95e_Scratchpad%20-%20The%20AI%20workspace%20for%20sellers.png
 tags:
 - Company
@@ -41,7 +52,36 @@ tags:
 - Revenue Operations
 - Artificial Intelligence
 - SaaS
-apis: []
+- MCP
+- Model Context Protocol
+- Agents
+- Sales Intelligence
+apis:
+- name: Clearskies MCP Server
+  description: 'The Clearskies Customer Context Graph exposed as a single remote Model Context Protocol
+    server. Connected AI clients (Claude, ChatGPT, Cursor, n8n, Retool) query unified, identity-resolved
+    customer context across Salesforce, HubSpot, Gong, Scratchpad, Fathom, Granola, Gmail, Outlook,
+    Google and Outlook calendars, Slack, Linear, Jira and Pylon, search the CRM schema, and author,
+    validate, dry-run, publish and inspect Clearskies workflows and agents. The endpoint is protected
+    by OAuth 2.1 (authorization_code + refresh_token, PKCE S256, RFC 7591 dynamic client registration)
+    and advertises RFC 9728 protected-resource metadata; tools/list is auth-gated, so the live tool
+    schemas require an authenticated introspection.'
+  humanURL: https://clearskies.cc/docs/building-with-clearskies/mcp-server
+  baseURL: https://mcp.clearskies.cc/mcp
+  tags:
+  - MCP
+  - Sales
+  - CRM
+  - Context Graph
+  properties:
+  - type: MCPServer
+    url: mcp/scratchpad-mcp.yml
+  - type: Documentation
+    url: https://clearskies.cc/docs
+  - type: Authentication
+    url: authentication/scratchpad-authentication.yml
+  - type: OAuthScopes
+    url: scopes/scratchpad-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -72,8 +112,38 @@ common:
   url: security/scratchpad-vulnerability-disclosure.yml
 - type: DomainSecurity
   url: security/scratchpad-domain-security.yml
+- type: DeveloperPortal
+  url: https://clearskies.cc/docs
+- type: Documentation
+  url: https://clearskies.cc/docs
+- type: GettingStarted
+  url: https://clearskies.cc/docs/getting-started/quick-start
+- type: SignUp
+  url: https://app.clearskies.cc/login
+- type: MCPServer
+  url: mcp/scratchpad-mcp.yml
+- type: Authentication
+  url: authentication/scratchpad-authentication.yml
+- type: OAuthScopes
+  url: scopes/scratchpad-scopes.yml
+- type: WellKnown
+  url: well-known/scratchpad-well-known.yml
+- type: Conformance
+  url: conformance/scratchpad-conformance.yml
+- type: ErrorCatalog
+  url: errors/scratchpad-problem-types.yml
+- type: Conventions
+  url: conventions/scratchpad-conventions.yml
+- type: Lifecycle
+  url: lifecycle/scratchpad-lifecycle.yml
+- type: Plans
+  url: plans/scratchpad-plans-pricing.yml
+- type: Sandbox
+  url: sandbox/scratchpad-sandbox.yml
+- type: LLMsTxt
+  url: llms/scratchpad-llms.txt
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 3
+  artifacts_added: 17
   pass: local-v1
