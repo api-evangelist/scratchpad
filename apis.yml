@@ -39,7 +39,7 @@ accessModel:
     user/month) and Clearskies gives every new workspace $250 in credits with no ongoing cost to start.
     The MCP endpoint itself is OAuth-protected and requires a Clearskies workspace, so the agent surface
     is customer-only even though sign-up is self-service.
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-13'
 image: https://cdn.prod.website-files.com/5ec58e445ff9859286816f53/689655f9a5b2bc821c89f95e_Scratchpad%20-%20The%20AI%20workspace%20for%20sellers.png
