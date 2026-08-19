@@ -1,0 +1,43 @@
+generated: '2026-08-13'
+method: searched
+source: registry searches on 2026-08-13
+package_count: 0
+official_package_count: 0
+note: >-
+  A recorded absence. Neither Scratchpad nor Clearskies publishes a first-party client library in any
+  public registry, and none is referenced from their docs. This is coherent with the delivery model:
+  the only machine surface is a remote MCP endpoint, which MCP clients reach over HTTP with no vendor
+  SDK installed. NO Packages and NO SDKs pointer is emitted in apis.yml, because there is nothing to
+  point at.
+
+packages: []
+
+registries_checked:
+- registry: npm
+  queries: [clearskies, scratchpad salesforce]
+  endpoint: https://registry.npmjs.org/-/v1/search
+  result: no first-party package; the "clearskies" query returned zero results
+- registry: pypi
+  queries: [clearskies-mcp, scratchpad-sdk]
+  endpoint: https://pypi.org/pypi/<name>/json
+  result: 404 on both
+- registry: docs
+  queries: [https://clearskies.cc/docs/llms.txt, https://www.scratchpad.com/llms.txt]
+  result: no SDK, client library or install instruction named anywhere in either index
+
+distribution_model:
+  description: >-
+    Integration is by MCP client configuration, not by dependency. The published instructions are to
+    paste the workspace MCP server URL into Claude, ChatGPT, Cursor, n8n or Retool. There is no npx
+    package and no local stdio server.
+  source: mcp/scratchpad-mcp.yml
+
+chrome_extension:
+  name: Scratchpad Workspace Chrome Extension
+  note: >-
+    Listed as a service component on https://status.scratchpad.com, so the extension is a real
+    distributed artifact. It is an end-user browser extension distributed through the Chrome Web
+    Store, not a developer client library, and carries no registry version metadata of the kind this
+    artifact records.
+  version: null
+  published: null

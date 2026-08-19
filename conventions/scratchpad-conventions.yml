@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: probed
+source: live probes of https://mcp.clearskies.cc plus https://clearskies.cc/docs
+note: >-
+  Cross-cutting semantics for the one machine surface this company operates, the Clearskies remote MCP
+  server. There is no OpenAPI to derive from, so everything here is either observed on the wire or
+  quoted from the docs. Where a convention is genuinely absent it is recorded as absent rather than
+  guessed - notably idempotency, for which no contract is published.
+
+transport:
+  protocol: Model Context Protocol over HTTP
+  endpoint: https://mcp.clearskies.cc/mcp
+  method: POST
+  accept: application/json, text/event-stream
+  jsonrpc: '2.0'
+
+authentication:
+  style: OAuth 2.1 bearer token in the Authorization header
+  discovery: RFC 9728 protected-resource metadata advertised in the WWW-Authenticate challenge
+  client_registration: dynamic (RFC 7591) at https://mcp.clearskies.cc/oauth/register
+  pkce: S256 required
+  detail: authentication/scratchpad-authentication.yml
+
+idempotency:
+  supported: unknown
+  documented: false
+  note: >-
+    No idempotency key header, parameter or retry contract is documented anywhere in the Clearskies
+    docs or llms.txt, and none can be observed without an authenticated session. Recorded as absent.
+    NO Idempotency pointer is emitted in apis.yml for this provider.
+
+pagination:
+  documented: false
+  note: Not published. MCP tool result shapes are auth-gated so no pagination convention was observed.
+
+versioning:
+  scheme: unversioned path
+  note: >-
+    The endpoint is /mcp with no version segment. MCP protocol version negotiation happens in the
+    initialize handshake, which is behind auth. No API version header or date-train is documented.
+  detail: lifecycle/scratchpad-lifecycle.yml
+
+request_tracing:
+  response_header: x-request-id
+  body_fields: [requestId, traceId]
+  note: Both a per-request id and a distributed trace id are returned on service errors, which is
+    unusually good for support correlation.
+
+error_envelope:
+  formats: [proprietary JSON service envelope, RFC 6749 OAuth error]
+  problem_json: false
+  detail: errors/scratchpad-problem-types.yml
+
+rate_limit_signaling:
+  documented: false
+  headers_observed: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After headers were present on any anonymous response, and
+    no limits are published. Commercially the product is metered by "context call" rather than by
+    request rate. See rate-limits/scratchpad-rate-limits.yml.
+
+write_safety:
+  human_review: >-
+    Clearskies workflows support a Human Review step that pauses a run for approval before an action
+    executes, with one reviewer deciding whether the step proceeds.
+  dry_run: >-
+    Workflow drafts can be test-run against real trigger data with no side effects - no Slack message
+    or email is sent and nothing is written to the CRM.
+  draft_publish_model: >-
+    Creating a workflow always creates a draft and nothing runs until it is published. Editing a
+    published workflow writes to its draft while the live configuration keeps running.
+  source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+
+permissions_model:
+  description: >-
+    Permissions, security logging and source-level controls follow the existing customer data rules of
+    each connected system, so AI workflows do not create a shadow access layer. The Scratchpad
+    workspace likewise connects to Salesforce via API and inherits Salesforce permissions.
+  source: https://clearskies.cc/llms.txt
+
+cross_links:
+  authentication: authentication/scratchpad-authentication.yml
+  scopes: scopes/scratchpad-scopes.yml
+  errors: errors/scratchpad-problem-types.yml
+  lifecycle: lifecycle/scratchpad-lifecycle.yml
+  rate_limits: rate-limits/scratchpad-rate-limits.yml
+  sandbox: sandbox/scratchpad-sandbox.yml

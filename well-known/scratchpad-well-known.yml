@@ -1,0 +1,76 @@
+generated: '2026-08-13'
+method: searched
+source: live probes of every Scratchpad and Clearskies host on 2026-08-13
+note: >-
+  Two real documents were served, both on the Clearskies MCP host: RFC 8414 OAuth 2.0 Authorization
+  Server Metadata and RFC 9728 OAuth 2.0 Protected Resource Metadata. Everything else 404s. The
+  scratchpad.com apex answers every /.well-known/* path with an HTML page reading "Invalid .well-known
+  request" under an HTTP 404 - a recorded absence, not a document. Clearskies (clearskies.cc) is the
+  same company: Scratchpad's own status page (status.scratchpad.com) carries "Clearskies" as a service
+  component, and Scratchpad's own llms.txt names it as one of the products Scratchpad builds.
+hosts:
+- host: https://mcp.clearskies.cc
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: scratchpad-oauth-authorization-server.json
+    spec: RFC 8414
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: scratchpad-oauth-protected-resource.json
+    spec: RFC 9728
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://www.scratchpad.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: HTML body "Invalid .well-known request" - not a document
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.scratchpad.com
+  note: >-
+    Host resolves (Cloudflare) and answers with a bare Go-style "404 page not found" on every path
+    probed, including /, /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs,
+    /docs, /redoc, /graphql and /mcp. A live origin with no published contract surface.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://clearskies.cc
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://help.scratchpad.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404

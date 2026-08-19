@@ -1,0 +1,82 @@
+generated: '2026-08-13'
+method: searched
+source: https://status.scratchpad.com plus https://clearskies.cc/docs
+note: >-
+  Scratchpad runs a real Statuspage with per-component granularity, and it is the single strongest
+  operational signal the company publishes. There is no versioning policy, no deprecation policy, no
+  Sunset/Deprecation header commitment and no published SLA - each recorded as absent below rather
+  than omitted.
+
+status_page:
+  url: https://status.scratchpad.com
+  platform: Atlassian Statuspage
+  machine_readable: true
+  api:
+  - https://status.scratchpad.com/api/v2/status.json
+  - https://status.scratchpad.com/api/v2/summary.json
+  - https://status.scratchpad.com/api/v2/components.json
+  - https://status.scratchpad.com/api/v2/incidents.json
+  components:
+  - Scratchpad Chrome and Web
+  - Scratchpad Workspace Web
+  - Scratchpad Workspace Chrome Extension
+  - Clearskies
+  observed:
+    fetched: '2026-08-13'
+    unresolved_incidents: 0
+
+versioning:
+  scheme: none
+  current: null
+  docs: null
+  note: >-
+    The MCP endpoint is https://mcp.clearskies.cc/mcp with no version segment and no documented
+    version header. MCP protocol version negotiation is part of the initialize handshake and is
+    behind authentication.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  note: >-
+    No deprecation or sunset policy is published on scratchpad.com or clearskies.cc. NO Deprecation
+    pointer is emitted in apis.yml. The closest published lifecycle commitment is product-level -
+    Clearskies marks each connector live, beta or roadmap on
+    https://clearskies.cc/integrations - which is a maturity signal, not a deprecation contract.
+
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime target. Pricing is "subject to commercial terms and fair use".
+
+changelog:
+  url: null
+  note: >-
+    No dated changelog. https://www.scratchpad.com/changelog, /whats-new and
+    https://clearskies.cc/changelog all return 404. NO ChangeLog pointer is emitted.
+
+roadmap:
+  url: null
+  published_signals:
+  - https://clearskies.cc/integrations lists roadmap connectors (Attio, Intercom, Zendesk, Notion,
+    Snowflake) and beta connectors (Fireflies, Microsoft Teams)
+  - https://clearskies.cc/docs/support/feature-requests.md invites feature requests
+  note: >-
+    No dedicated roadmap page. https://www.scratchpad.com/roadmap returns 404. NO Roadmap pointer is
+    emitted; a connector status table is not a roadmap document.
+
+deprecated_operations: []
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://status.scratchpad.com/api/v2/summary.json
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://www.scratchpad.com/changelog
+  http_status: 404
+- fetched: '2026-08-13'
+  url: https://www.scratchpad.com/roadmap
+  http_status: 404
+- fetched: '2026-08-13'
+  url: https://clearskies.cc/changelog
+  http_status: 404

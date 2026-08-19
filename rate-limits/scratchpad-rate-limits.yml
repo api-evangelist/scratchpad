@@ -1,0 +1,58 @@
+generated: '2026-08-13'
+method: searched
+source:
+- https://clearskies.cc/docs
+- https://clearskies.cc/pricing
+- https://mcp.clearskies.cc/mcp
+limit_count: 0
+note: >-
+  An honest zero. Neither Scratchpad nor Clearskies publishes a rate limit anywhere in their docs,
+  pricing or llms.txt, and no rate-limit response headers were present on any anonymous response from
+  https://mcp.clearskies.cc. NO RateLimits pointer is emitted in apis.yml, because a file recording
+  the absence of limits must not be read as the provider publishing a runtime limit signal.
+
+limits: []
+
+headers_observed:
+  checked:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - RateLimit
+  - RateLimit-Policy
+  - Retry-After
+  found: []
+  note: >-
+    Checked against the anonymous 401 from POST https://mcp.clearskies.cc/mcp and the 404s from the
+    same host. The only non-standard response headers present were x-request-id and
+    strict-transport-security. An authenticated session would be required to observe throttling
+    behaviour, which this pass did not have.
+
+exhaustion_status_code: unknown
+
+commercial_metering:
+  note: >-
+    Consumption is metered commercially rather than rate-limited publicly. Clearskies bills $0.30 per
+    "context call" on pay-as-you-go, and its annual bands advertise "unlimited context calls over MCP
+    and API" subject to "commercial terms and fair use" - a fair-use clause with no published
+    numeric ceiling. Scratchpad meters its workspace in AI credits per user per month (100 Free,
+    400 Solo, 800 Team, unlimited Enterprise), which is a quota, not a rate limit.
+  source: plans/scratchpad-plans-pricing.yml
+
+adjacent_limit_documented:
+  - limit: Salesforce TotalRequests API limit
+    scope: the customer's own Salesforce org, not Scratchpad
+    note: >-
+      Scratchpad's help centre documents a "Salesforce API request limit exceeded" error, which is the
+      downstream Salesforce org limit surfacing through Scratchpad rather than a Scratchpad limit.
+    source: https://help.scratchpad.com/en/articles/3514153-why-am-i-seeing-a-salesforce-api-request-limit-exceeded-error
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/mcp
+  http_status: 401
+  result: no rate-limit headers on response
+- fetched: '2026-08-13'
+  url: https://clearskies.cc/pricing
+  http_status: 200
+  result: fair-use language, no numeric limit

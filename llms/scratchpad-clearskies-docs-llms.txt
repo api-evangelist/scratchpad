@@ -1,0 +1,75 @@
+# Clearskies
+
+> Clearskies documentation for revenue teams and GTM Engineers. Learn how to connect your GTM stack — Salesforce, Gong, Scratchpad, Google Workspace, Microsoft 365, Slack — and unify the data into a Context Graph that gives Claude, ChatGPT, n8n, and Retool complete, always-current customer context via MCP. Covers the Clearskies agent builder, pre-built templates (deal risk monitor, post-call workflow, pre-call brief, AskAI), evals, adoption tracking, and deployment to Slack, Salesforce, and custom interfaces.
+
+## Docs
+
+- [Why Clearskies Exists](https://clearskies.cc/docs/welcome/why-clearskies-exists.md): The problem we're solving and why it matters
+- [What is Clearskies](https://clearskies.cc/docs/welcome/what-is-clearskies.md): Clearskies is an agent builder for revenue teams. Build production-ready sales agents in minutes, not months. Powered by your unified data. Tailored to your process.
+- [Clearskies Principles](https://clearskies.cc/docs/welcome/clearskies-principles.md): These principles guide what we build and how we build it.
+- [Quick Start](https://clearskies.cc/docs/getting-started/quick-start.md): Connect your data, build your graph, and put it to work in about 10 minutes
+- [Context Graph](https://clearskies.cc/docs/unifying-gtm-data/customer-context-graph.md): A unified view of all your customer data across CRM, calls, email, calendar, Slack and more.
+- [Fathom](https://clearskies.cc/docs/unifying-gtm-data/fathom.md): Connect Fathom to sync call transcripts, meeting recordings, and conversation data into your Clearskies Context Graph.
+- [Gong](https://clearskies.cc/docs/unifying-gtm-data/data-sources/gong.md): Connect Gong to sync call transcripts, meeting recordings, and conversation analytics into your Clearskies Context Graph.
+- [Google Workspace](https://clearskies.cc/docs/unifying-gtm-data/google.md): Connect Google Workspace to sync email and calendar data for selected users into your Clearskies Context Graph, giving your agents communication history and meeting context that doesn't live in your CRM.
+- [Granola](https://clearskies.cc/docs/unifying-gtm-data/granola.md): Connect Granola to your Clearskies Context Graph so your agents can use meeting notes and transcripts as customer context — resolved to the right deal, contact, and account automatically.
+- [HubSpot (CRM)](https://clearskies.cc/docs/unifying-gtm-data/hubspot.md): Connect your HubSpot CRM to your Clearskies Context Graph so your agents can access CRM data alongside call, email, and Slack data.
+- [Jira](https://clearskies.cc/docs/unifying-gtm-data/jira.md): Connect Jira to your Clearskies Context Graph so your agents can see issue-tracking work — tickets, status, and comments — alongside CRM, calls, email, and Slack.
+- [Linear](https://clearskies.cc/docs/unifying-gtm-data/linear.md): Connect Linear to your Clearskies Context Graph so your agents can see engineering work — issues, projects, and status — alongside CRM, calls, email, and Slack.
+- [Microsoft 365](https://clearskies.cc/docs/unifying-gtm-data/microsoft.md): Connect Microsoft 365 to sync provisioned users' email and calendar data into your Clearskies Customer Context Graph, giving your agents communication history and meeting context that doesn't live in your CRM.
+- [Pylon](https://clearskies.cc/docs/unifying-gtm-data/pylon.md): Connect Pylon to your Clearskies Context Graph so your agents can use support tickets and conversation threads as customer context — surfaced in pre-call briefs, Ask AI, and account health.
+- [Salesforce](https://clearskies.cc/docs/unifying-gtm-data/salesforce.md): Connect Salesforce to your Clearskies Context Graph so your agents can access accounts, contacts, and opportunities alongside call, email, and Slack data.
+- [Scratchpad](https://clearskies.cc/docs/unifying-gtm-data/scratchpad.md): Connect Scratchpad to sync call recordings and transcripts into your Clearskies Context Graph for unified revenue intelligence.
+- [Slack](https://clearskies.cc/docs/unifying-gtm-data/slack.md): Connect Slack to your Clearskies Context Graph to incorporate conversations into your revenue AI agents and enable natural language Q&A directly in Slack.
+- [Need Admin Access to Connect a Data Source?](https://clearskies.cc/docs/unifying-gtm-data/not-an-admin.md): Get a data source connected to your Customer Context Graph when you don't have admin rights in that tool, find the right admin, send them a ready-to-use message, and grant them Clearskies admin access to complete the connection.
+- [What You Can Build](https://clearskies.cc/docs/building-with-clearskies/what-you-can-build.md): Examples of agents and interfaces you can create with Clearskies, from Q&A assistants to deal risk monitors.
+- [Workflows](https://clearskies.cc/docs/workflows/overview.md): Automate revenue work with Clearskies workflows — a workflow runs on a trigger and moves through steps that find data, decide, and act, all on your Context Graph.
+- [Triggers](https://clearskies.cc/docs/workflows/triggers.md): Choose what starts a workflow — a meeting starting or ending, a recurring schedule, or a Salesforce record being created or changed.
+- [Find & filter records](https://clearskies.cc/docs/workflows/find-and-filter-records.md): Pull the accounts, contacts, deals, and more that a workflow should act on, and gate a run so it only continues when your conditions are met.
+- [Send email from a workflow](https://clearskies.cc/docs/workflows/actions/send-email.md): Add a Send Email or Draft Email step to a workflow — follow-ups, recaps, and alerts go out (or land in a draft) automatically, built from the data earlier steps produced.
+- [Write to Salesforce from a workflow](https://clearskies.cc/docs/workflows/actions/write-to-salesforce.md): Create and update Salesforce records as workflow steps — so a workflow doesn't just read your CRM and notify you, it keeps the record current.
+- [Write to HubSpot from a workflow](https://clearskies.cc/docs/workflows/actions/write-to-hubspot.md): Create and update HubSpot records as workflow steps — so a workflow keeps your CRM current instead of just reading from it.
+- [Send a Slack message from a workflow](https://clearskies.cc/docs/workflows/actions/send-slack-message.md): Post a message to Slack as a workflow step — recaps, alerts, and briefs land in the right channel or DM the moment the workflow runs.
+- [Run an agent from a workflow](https://clearskies.cc/docs/workflows/actions/run-an-agent.md): Add a Run Agent step so a workflow can reason over its data — summarize a call, draft a recap, classify a deal — and hand the result to the steps that follow.
+- [Loops](https://clearskies.cc/docs/workflows/loops.md): Repeat a step for every record in a set, so one workflow can act on many — a message per deal, a record per contact.
+- [Human review on a workflow step](https://clearskies.cc/docs/workflows/human-review.md): Pause a workflow for approval before an action runs — one reviewer decides whether the step goes ahead.
+- [Workflow folders](https://clearskies.cc/docs/workflows/folders.md): Organize your workflows into folders to keep a growing set of workflows manageable.
+- [Manage workflows from Claude or ChatGPT](https://clearskies.cc/docs/workflows/manage-via-mcp.md): Create, edit, test, and publish Clearskies workflows from any AI you've connected to Clearskies, the full workflow lifecycle, without leaving the conversation.
+- [Agents](https://clearskies.cc/docs/agents/overview.md): An agent is a reusable AI unit you build once and put to work — inside a workflow, and optionally behind its own command — all grounded in your Context Graph.
+- [Build an agent](https://clearskies.cc/docs/agents/building-an-agent.md): Give an agent a model, an optional command, and web search when it needs live information — then publish it so workflows and reps can put it to work.
+- [Use an agent in a workflow](https://clearskies.cc/docs/agents/use-in-a-workflow.md): Run a published agent as a workflow step so its result flows into the steps that follow — post it to Slack, put it in an email, or write it to your CRM.
+- [Manage agents from Claude or ChatGPT](https://clearskies.cc/docs/agents/manage-via-mcp.md): Build, read, update, and publish Clearskies agents from any AI you've connected to Clearskies — so you can create an agent in the same place you're already working.
+- [MCP Server](https://clearskies.cc/docs/building-with-clearskies/mcp-server.md): Connect AI tools and automation platforms to your Context Graph using Model Context Protocol (MCP)
+- [Claude](https://clearskies.cc/docs/building-with-clearskies/mcp-clients/claude.md): Connect Claude.ai or Claude Desktop to your Clearskies Context Graph via MCP for natural language queries on your CRM, calls, email, and Slack data.
+- [ChatGPT](https://clearskies.cc/docs/building-with-clearskies/mcp-clients/chatgpt.md): Connect ChatGPT to your Clearskies Context Graph, install the clearskies plugin, or connect via MCP in developer mode, for natural language queries on your unified GTM data.
+- [n8n](https://clearskies.cc/docs/building-with-clearskies/mcp-clients/n8n.md): Build automation workflows in n8n using your Clearskies Context Graph via MCP — connect GTM data from Salesforce, Gong, Slack, and more.
+- [Retool](https://clearskies.cc/docs/building-with-clearskies/mcp-clients/retool.md): Connect Retool to your Clearskies Context Graph via MCP to build AI-powered internal tools and dashboards on real-time GTM data.
+- [Build in Claude or ChatGPT](https://clearskies.cc/docs/building-with-clearskies/build-in-claude-or-chatgpt.md): Use Claude or ChatGPT as your interface to Clearskies over MCP.
+- [AI Providers](https://clearskies.cc/docs/building-with-clearskies/ai-providers.md): Configure AI providers, bring your own API keys (BYOK), and manage model availability for your workspace.
+- [Best Practices: Claude + Clearskies Context Graph](https://clearskies.cc/docs/building-with-clearskies/claude-best-practices.md): Best practices for Sales Leaders, Sellers, and Account Managers that want to get the most out of Claude and their Clearskies Context Graph.
+- [Pre-call Brief](https://clearskies.cc/docs/pre-call-brief.md)
+- [Stakeholder Map](https://clearskies.cc/docs/use-cases/stakeholder-map.md): Who matters in the deal, where you have relationships, and where you're single-threaded. Built from who actually shows up, not from who a rep remembered to add to CRM.
+- [QBR Preparation](https://clearskies.cc/docs/qbr-preparation.md)
+- [Handoffs](https://clearskies.cc/docs/use-cases/handoffs.md): When a deal closes or an account changes hands, whoever takes over gets everything: goals, commitments, key people, and what was promised to whom.
+- [Post-call Follow-through](https://clearskies.cc/docs/use-cases/post-call-follow-through.md): When a call ends: the follow-up drafted, action items captured, next steps set. Every call, without the rep remembering to do it.
+- [CRM Updates](https://clearskies.cc/docs/use-cases/crm-updates.md): CRM fields filled in from what happened on calls and in email. No end-of-week data entry, and no reporting built on stale fields.
+- [Deal Status](https://clearskies.cc/docs/use-cases/deal-status.md): Ask what changed in this deal since the last review and get an answer from evidence, not memory. Every call, email, and CRM change on one deal, read back to you.
+- [Deal Qualification (MEDDPICC / SPICED)](https://clearskies.cc/docs/untitled-page.md)
+- [Pipeline Risk Detection](https://clearskies.cc/docs/pipeline-risk-detection.md): Scan every open opportunity continuously and flag the deals going silent across CRM, calls, email, and Slack, delivered where your team works.
+- [Daily / Weekly Leadership Briefs](https://clearskies.cc/docs/use-cases/daily-weekly-leadership-briefs.md)
+- [Pipeline Review](https://clearskies.cc/docs/use-cases/pipeline-review.md): Week over week: what progressed, what stalled, what closed, won or lost, and why. The Monday review prepared before anyone walks into it.
+- [Forecast Review](https://clearskies.cc/docs/use-cases/forecast-review.md): Before the forecast call: which deals changed category, and whether the deals in commit are actually on track. Pressure-tested against evidence, deal by deal.
+- [1:1 Prep](https://clearskies.cc/docs/use-cases/one-on-one-prep.md): The rep's deals reviewed before every 1:1: what moved, what's stuck, where the manager can help, and what was agreed last time.
+- [Market Trends](https://clearskies.cc/docs/use-cases/market-trends.md): A weekly read on what's changing in buyer priorities, drawn from your own conversations. The shift shows up in what buyers say months before it shows up in your win rate.
+- [Win-Loss Analysis From Real Signals](https://clearskies.cc/docs/use-cases/win-loss-analysis-from-real-signals.md)
+- [Competitive Intelligence From Your Own Data](https://clearskies.cc/docs/use-cases/competitive-intelligence-from-your-own-data.md)
+- [Objection Trends](https://clearskies.cc/docs/use-cases/objection-trends.md): The objections and buying criteria coming up across your calls, as a recurring report. What your market is pushing back on, before it shows up in your win rate.
+- [Product Feature Requests](https://clearskies.cc/docs/use-cases/product-feature-requests.md): The features and gaps customers bring up, ranked by the revenue behind them. Not a wishlist, a weighted read on what is actually costing you deals.
+- [Rep Coaching From Real Conversations](https://clearskies.cc/docs/use-cases/rep-coaching-from-real-conversations.md): Coaching moments with timestamps from every call, patterns that repeat across a rep's deals, and evidence-based feedback.
+- [Churn & Renewal Risk](https://clearskies.cc/docs/use-cases/churn-and-renewal-risk.md): A standing watch for accounts showing early signs of churn, or of expansion. The quiet account is the one that does not renew.
+- [Getting Help](https://clearskies.cc/docs/support/getting-help.md): Find the support resources and channels you need to get help with Clearskies.
+- [Feature Requests](https://clearskies.cc/docs/support/feature-requests.md): Share your ideas and help shape the Clearskies roadmap.
+
+## OpenAPI Specs
+
+- [openapi](https://clearskies.cc/docs/api-reference/openapi.json)

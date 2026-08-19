@@ -1,0 +1,119 @@
+generated: '2026-08-13'
+method: searched
+source:
+- https://www.scratchpad.com/pricing
+- https://clearskies.cc/pricing
+note: >-
+  Two distinct commercial surfaces from the same company. Scratchpad the seller workspace is priced
+  per seat with an AI-credit allowance. Clearskies, which is the surface that carries the MCP
+  endpoint, is priced by consumption ("context call") or by an annual band keyed to company revenue,
+  with no per-seat fee. Both are published openly with real numbers; only the top band is
+  contact-sales.
+currency: USD
+plan_count: 8
+
+products:
+- product: Scratchpad
+  url: https://www.scratchpad.com/pricing
+  model: per-seat subscription with AI credits
+  plans:
+  - name: Free
+    price: 0
+    currency: USD
+    period: month
+    unit: per user
+    included:
+      workspace_views: 3
+      call_recorder_hours_per_month: 10
+      ai_credits_per_user_per_month: 100
+    features: [Interface and Workspace, Call Recorder and Notetaker, AI Field Updates, Custom Prompts,
+      Deal and Account Agent, 'Integrations: Zoom, Gong, Meet, Teams, Gmail, Outlook']
+  - name: Solo
+    price: 19
+    price_annual_per_month: 24
+    currency: USD
+    period: month
+    unit: per user
+    billing_note: $19/user/month billed monthly; $24/user/month figure shown on the yearly column
+    included:
+      ai_credits_per_user_per_year: 4800
+      ai_credits_per_user_per_month: 400
+    features: [Modern Salesforce UI with sheets and notes, Call Recorder and Notetaker,
+      AI Field Updates, Deal and Account Agent, Custom Prompts, Prompt Insights, Hygiene Monitor,
+      Advanced Controls]
+  - name: Team
+    price: 49
+    price_annual_per_month: 62
+    currency: USD
+    period: month
+    unit: per user
+    included:
+      ai_credits_per_user_per_year: 9600
+      ai_credits_per_user_per_month: 800
+      pooled_credits: true
+    features: [Everything in Solo, Pooled credits across team, White-glove services available,
+      Gong integration]
+  - name: Enterprise
+    price: null
+    price_model: custom
+    period: null
+    unit: per user
+    included:
+      ai_credits: unlimited
+    features: [All features, Unlimited AI credits, White-glove Agent Services, Full Gong integration]
+
+- product: Clearskies
+  url: https://clearskies.cc/pricing
+  model: usage-based (context calls) or annual unlimited banded by company revenue
+  api_relevant: true
+  free_credits:
+    amount: 250
+    currency: USD
+    unit: credits per new workspace
+    applies_to: context calls
+  plans:
+  - name: Pay-as-you-go
+    price: 0.30
+    currency: USD
+    unit: per context call
+    period: metered
+    note: Applies after the $250 of free credits is consumed.
+  - name: Starter
+    price: 12000
+    price_monthly_equivalent: 1000
+    currency: USD
+    period: year
+    eligibility: company revenue (TTM) up to $10M
+    included: Unlimited context calls over MCP and API; unlimited connected sources; no per-seat fees,
+      user caps or extraction fees
+  - name: Growth
+    price: 36000
+    price_monthly_equivalent: 3000
+    currency: USD
+    period: year
+    eligibility: company revenue (TTM) $10M-$50M
+    included: Unlimited context calls over MCP and API; unlimited connected sources
+  - name: Scale
+    price: 72000
+    price_monthly_equivalent: 6000
+    currency: USD
+    period: year
+    eligibility: company revenue (TTM) $50M-$250M
+    included: Unlimited context calls over MCP and API; unlimited connected sources
+  - name: Enterprise
+    price: null
+    price_model: custom
+    period: year
+    eligibility: company revenue (TTM) $250M+
+    included: Custom terms
+  terms_note: Pricing is subject to commercial terms and fair use. Agent workflows are scoped and
+    priced separately.
+  contact: support@clearskies.cc
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://www.scratchpad.com/pricing
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://clearskies.cc/pricing
+  http_status: 200

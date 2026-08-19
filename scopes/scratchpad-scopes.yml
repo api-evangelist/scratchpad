@@ -1,0 +1,44 @@
+generated: '2026-08-13'
+method: probed
+source: https://mcp.clearskies.cc/.well-known/oauth-authorization-server
+note: >-
+  Scopes are read from the live RFC 8414 authorization-server metadata and the RFC 9728
+  protected-resource metadata on the Clearskies MCP host; both advertise the same three. Clearskies
+  publishes no scopes or permissions reference page, so there is nothing to enrich these with. The
+  authorization surface is identity-only: the three OIDC scopes establish who the caller is, and the
+  data a token can reach is then governed inside the workspace by the per-source connections and the
+  permissions of the underlying system (Salesforce, HubSpot, Gong, Slack and the rest), not by an
+  OAuth scope string. There is no read/write or per-object scope vocabulary to record.
+
+schemes:
+- name: ClearskiesMCPOAuth
+  source: well-known/scratchpad-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://mcp.clearskies.cc/oauth/authorize
+    tokenUrl: https://mcp.clearskies.cc/oauth/token
+
+scopes:
+- scope: openid
+  description: OpenID Connect - issue an ID token identifying the subject.
+  flows: [authorizationCode]
+  sources: [well-known/scratchpad-oauth-authorization-server.json, well-known/scratchpad-oauth-protected-resource.json]
+- scope: profile
+  description: Basic profile claims for the authenticated user.
+  flows: [authorizationCode]
+  sources: [well-known/scratchpad-oauth-authorization-server.json, well-known/scratchpad-oauth-protected-resource.json]
+- scope: email
+  description: Email address claim for the authenticated user; the Clearskies connect flow
+    authenticates a team member by their email domain.
+  flows: [authorizationCode]
+  sources: [well-known/scratchpad-oauth-authorization-server.json, well-known/scratchpad-oauth-protected-resource.json]
+
+scope_count: 3
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/.well-known/oauth-authorization-server
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/.well-known/oauth-protected-resource
+  http_status: 200

@@ -1,0 +1,67 @@
+generated: '2026-08-13'
+method: searched
+source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+note: >-
+  There is no sandbox in the payments sense - no test-mode key prefix, no test/live separation, no
+  magic test identifiers, and no fixture values are published. What Clearskies does ship is a genuine
+  non-destructive execution mode for the thing an agent is most likely to break: workflows that write
+  to a CRM or send email. Recorded verbatim from the docs. Nothing here is invented.
+
+test_live_separation:
+  key_prefixes: []
+  modes: []
+  published: false
+  note: A single production workspace. Authorization is per workspace via OAuth; there is no separate
+    test credential.
+
+console:
+  url: https://app.clearskies.cc
+  mcp_settings: https://app.clearskies.cc/settings/mcp-server
+  description: Workspace console where an admin retrieves the MCP server URL, connects data sources,
+    and builds workflows and agents.
+
+test_facilities:
+- id: workflow-dry-run
+  name: Dry run a workflow draft
+  description: >-
+    Run a draft against real trigger data and inspect what each step would do. Quoted from the docs:
+    "Test runs never produce side effects: no Slack message or email is sent, and nothing is written
+    to your CRM."
+  reachable_over_mcp: true
+  source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+- id: workflow-validate
+  name: Validate a draft
+  description: Validate a draft and get back per-step errors to fix, before anything goes live.
+  reachable_over_mcp: true
+  source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+- id: draft-publish-model
+  name: Draft-and-publish isolation
+  description: >-
+    Creating a workflow always creates a draft and nothing runs until it is published. Editing a
+    published workflow writes to its draft while the live configuration keeps running; publish again
+    to roll out, or discard the draft to revert.
+  reachable_over_mcp: true
+  source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+- id: human-review-step
+  name: Human review gate
+  description: Pause a workflow for approval before an action runs; one reviewer decides whether the
+    step goes ahead.
+  reachable_over_mcp: false
+  source: https://clearskies.cc/docs/workflows/human-review.md
+- id: free-credits
+  name: Free evaluation credits
+  description: $250 in credits per new workspace, applied to context calls, so the MCP surface can be
+    exercised before any spend.
+  source: https://clearskies.cc/pricing
+
+test_clocks: null
+fixtures: []
+test_values: []
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://app.clearskies.cc/login
+  http_status: 200

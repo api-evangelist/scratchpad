@@ -1,0 +1,76 @@
+generated: '2026-08-13'
+method: probed
+source: live responses from https://mcp.clearskies.cc
+format: proprietary-json
+note: >-
+  Scratchpad publishes no OpenAPI and no error reference page, so this catalogue is built only from
+  error envelopes actually observed on the wire against the Clearskies MCP host on 2026-08-13. It is
+  NOT the complete error surface - it is what an anonymous caller can see. Two distinct envelopes are
+  in use on the same host, which is itself the finding.
+
+envelopes:
+- id: service-envelope
+  description: The Clearskies service error shape. Carries a machine code, a human message, and two
+    correlation identifiers useful for support.
+  content_type: application/json
+  shape:
+    ok: boolean, false on error
+    error.code: string, SCREAMING_SNAKE_CASE machine-readable code
+    error.message: string, human-readable
+    requestId: string, per-request correlation id
+    traceId: string, distributed trace id
+  observed_example: >-
+    {"ok":false,"error":{"code":"NOT_FOUND","message":"Endpoint not found"},
+    "requestId":"cb7c954cf99aee91867c718b9c2e145e","traceId":"6a7e791d000000007a1b40e9b0f17bc2"}
+- id: oauth-envelope
+  description: RFC 6749 section 5.2 style OAuth error, used on the protected MCP resource itself.
+    Accompanied by an RFC 6750 WWW-Authenticate Bearer challenge.
+  content_type: application/json; charset=utf-8
+  shape:
+    error: string, OAuth error code
+    error_description: string
+  observed_example: >-
+    {"error":"invalid_request","error_description":"missing authorization header"}
+
+problems:
+- status: 401
+  code: invalid_request
+  title: Missing authorization header
+  envelope: oauth-envelope
+  remediation: >-
+    Obtain an access token via the authorization code + PKCE flow at
+    https://mcp.clearskies.cc/oauth/authorize and present it as Authorization: Bearer. The response
+    carries WWW-Authenticate with resource_metadata pointing at
+    https://mcp.clearskies.cc/.well-known/oauth-protected-resource so a client can discover the
+    authorization server automatically.
+  observed_on: POST https://mcp.clearskies.cc/mcp (tools/list, anonymous)
+- status: 404
+  code: NOT_FOUND
+  title: Endpoint not found
+  envelope: service-envelope
+  remediation: Check the path. The MCP host serves only /mcp, the OAuth endpoints, and the two
+    /.well-known OAuth metadata documents.
+  observed_on: GET https://mcp.clearskies.cc/llms.txt, /openapi.json, /.well-known/agent-card.json
+
+tracing:
+  request_id_field: requestId
+  trace_id_field: traceId
+  request_id_header: x-request-id
+  note: x-request-id was present on the 401 response headers from https://mcp.clearskies.cc/mcp and
+    matches no body field on that envelope; the service envelope repeats a requestId in the body.
+
+not_captured:
+  reason: >-
+    The authenticated error surface (tool-level validation errors, workflow publish per-step errors,
+    connector failures) is documented only in prose. Clearskies docs describe, for example, that
+    publishing a workflow whose agent is unpublished "fails with a per-step error telling you to
+    publish the agent first" - but no code or shape is published for it.
+  source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/mcp
+  http_status: 401
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/llms.txt
+  http_status: 404

@@ -1,0 +1,116 @@
+generated: '2026-08-13'
+method: probed
+source: live probes of https://mcp.clearskies.cc plus published Scratchpad and Clearskies security pages
+note: >-
+  Assertions below are grounded in observed discovery documents and the provider's own published
+  security statements. Nothing is inferred from an OpenAPI, because Scratchpad publishes none.
+
+standards:
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    Remote MCP server at https://mcp.clearskies.cc/mcp; an anonymous tools/list POST returns a
+    spec-correct 401 with an MCP Bearer challenge naming its resource metadata document.
+- id: oauth2
+  name: OAuth 2.0 / 2.1 authorization code
+  conforms: true
+  evidence: authorization_code + refresh_token grants advertised at
+    https://mcp.clearskies.cc/.well-known/oauth-authorization-server
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 with issuer, authorization_endpoint,
+    token_endpoint, registration_endpoint, scopes_supported, grant_types_supported
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence: /.well-known/oauth-protected-resource returns 200 with resource, authorization_servers,
+    bearer_methods_supported, resource_signing_alg_values_supported
+- id: rfc7591
+  name: OAuth 2.0 Dynamic Client Registration
+  conforms: true
+  evidence: registration_endpoint https://mcp.clearskies.cc/oauth/register advertised in AS metadata
+- id: rfc7636
+  name: PKCE
+  conforms: true
+  evidence: code_challenge_methods_supported ["S256"]
+- id: rfc6750
+  name: OAuth 2.0 Bearer Token Usage
+  conforms: true
+  evidence: bearer_methods_supported ["header"]; observed WWW-Authenticate Bearer challenge
+- id: oidc
+  name: OpenID Connect
+  conforms: partial
+  evidence: >-
+    openid/profile/email scopes are advertised, but /.well-known/openid-configuration returns 404 on
+    every host probed, so there is no OIDC discovery document.
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence: >-
+    Errors are returned as a proprietary JSON envelope with content-type application/json, not
+    application/problem+json. See errors/scratchpad-problem-types.yml.
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on scratchpad.com, clearskies.cc and
+    mcp.clearskies.cc
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on every host probed
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    No OpenAPI is published. The document linked as an OpenAPI spec from
+    https://clearskies.cc/docs/llms.txt, at https://clearskies.cc/docs/api-reference/openapi.json, is
+    the unmodified Mintlify "OpenAPI Plant Store" sample (servers http://sandbox.mintlify.com) and does
+    not describe Clearskies. It was deliberately NOT harvested.
+- id: hsts
+  name: HTTP Strict Transport Security
+  conforms: true
+  evidence: strict-transport-security max-age=31536000; includeSubDomains observed on
+    mcp.clearskies.cc; see security/scratchpad-domain-security.yml
+
+compliance:
+  published: true
+  source: https://www.scratchpad.com/security
+  trust_center: https://trust.scratchpad.com
+  certifications:
+  - id: soc2-type-2
+    name: SOC 2 Type II
+    evidence: >-
+      "Clearskies is SOC 2 Type II compliant, and qualified customers and prospects can request SOC 2
+      Type II documentation and supporting security materials through the shared Scratchpad Trust
+      Center: https://trust.scratchpad.com" - https://clearskies.cc/llms.txt
+  - id: gdpr
+    name: GDPR aligned
+    evidence: Data practices aligned with GDPR; DPA at
+      https://www.scratchpad.com/legal/data-processing-addendum
+  - id: ccpa
+    name: CCPA aligned
+    evidence: https://www.scratchpad.com/security and https://clearskies.cc/llms.txt
+  controls:
+  - Customer data logically isolated per customer
+  - Encrypted in transit (TLS 1.2+) and at rest
+  - Stored on AWS in US-based infrastructure
+  - Does not train AI models on customer data
+  - Subprocessor list published at https://www.scratchpad.com/subprocessors
+  - Salesforce API connection inherits existing Salesforce permissions
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/.well-known/oauth-authorization-server
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://clearskies.cc/docs/api-reference/openapi.json
+  http_status: 200
+  result: Mintlify Plant Store sample - rejected, not the provider's contract
+- fetched: '2026-08-13'
+  url: https://www.scratchpad.com/subprocessors
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://trust.scratchpad.com/
+  http_status: 200

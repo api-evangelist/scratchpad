@@ -1,19 +1,36 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
-- host: scratchpad.com
+- host: www.scratchpad.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Oct 14 19:18:50 2026 GMT
+  cert_expires: Nov  7 05:22:38 2026 GMT
   hsts: true
   hsts_max_age: 31536000
+- host: clearskies.cc
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 15 05:31:32 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: mcp.clearskies.cc
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 15 05:31:32 2026 GMT
+  hsts: null
 domains:
 - domain: scratchpad.com
   dnssec: false
   caa:
   - 0 issue "letsencrypt.org"
   - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: clearskies.cc
+  dnssec: false
+  caa: []
   spf: true
   dmarc: true
   dmarc_policy: none

@@ -1,0 +1,102 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://clearskies.cc/docs/building-with-clearskies/mcp-server
+ownership: >-
+  The MCP endpoint is served from clearskies.cc, not scratchpad.com. It is recorded on the Scratchpad
+  profile because it is the same company: Scratchpad's own status page at status.scratchpad.com lists
+  "Clearskies" as one of its four service components, Scratchpad's own llms.txt at
+  https://www.scratchpad.com/llms.txt says "Scratchpad builds two products for revenue teams" and
+  describes Clearskies as its context layer, and Clearskies routes its legal and trust surface back to
+  Scratchpad (Terms of Service at https://www.scratchpad.com/legal/terms-of-service, DPA at
+  https://www.scratchpad.com/legal/data-processing-addendum, Trust Center at https://trust.scratchpad.com).
+
+deployment:
+  mode: remote
+  endpoint: https://mcp.clearskies.cc/mcp
+  auth: oauth
+  verified: probed
+
+server:
+  name: Clearskies
+  transport: http
+  url: https://mcp.clearskies.cc/mcp
+  protocol: Model Context Protocol
+  docs: https://clearskies.cc/docs/building-with-clearskies/mcp-server
+  console: https://app.clearskies.cc/settings/mcp-server
+  note: >-
+    The docs instruct each workspace to copy its own MCP URL from the Clearskies app
+    (app.clearskies.cc/settings/mcp-server) and paste it into the client. The canonical service
+    endpoint probed here, https://mcp.clearskies.cc/mcp, answers with a spec-correct MCP OAuth
+    challenge, so it is the real resource; per-workspace scoping is resolved through the access token.
+
+clients_supported:
+- Claude (claude.ai and Claude Desktop, custom connector)
+- ChatGPT (developer mode connector, plus a "clearskies" plugin)
+- Cursor
+- n8n (MCP Client node, n8n >= 1.60.0)
+- Retool
+
+tools:
+  status: gated
+  note: >-
+    NO TOOL NAMES ARE RECORDED. An anonymous POST of {"jsonrpc":"2.0","id":1,"method":"tools/list"} to
+    https://mcp.clearskies.cc/mcp returns HTTP 401 with
+    WWW-Authenticate: Bearer realm="mcp", error="invalid_request",
+    error_description="missing authorization header",
+    resource_metadata="https://mcp.clearskies.cc/.well-known/oauth-protected-resource".
+    The live tool list and its inputSchemas therefore require an authenticated introspection. Clearskies
+    publishes no tool-name reference in its docs or llms.txt, so the capability groups below are
+    transcribed from prose and are NOT tool identifiers.
+  capability_groups:
+  - group: context-graph query
+    description: Query unified, identity-resolved customer context - deals, accounts, contacts,
+      communication history and timelines - across every connected source.
+    source: https://clearskies.cc/docs/building-with-clearskies/mcp-server.md
+  - group: CRM schema search
+    description: Search the connected CRM schema to find the right objects and fields.
+    source: https://clearskies.cc/docs/building-with-clearskies/mcp-server.md
+  - group: messaging channel query
+    description: Query Slack and Microsoft Teams channels by name.
+    source: https://clearskies.cc/docs/building-with-clearskies/mcp-server.md
+  - group: workflow authoring lifecycle
+    description: Create, edit, validate, dry-run, patch a single step, duplicate, publish and unpublish
+      workflows, plus list and inspect workflow runs and manage workflow folders.
+    source: https://clearskies.cc/docs/workflows/manage-via-mcp.md
+  - group: agent authoring lifecycle
+    description: Build, read, update and publish Clearskies agents.
+    source: https://clearskies.cc/docs/agents/manage-via-mcp.md
+
+authorization:
+  scheme: OAuth 2.1 authorization code with PKCE
+  protected_resource_metadata: https://mcp.clearskies.cc/.well-known/oauth-protected-resource
+  authorization_server_metadata: https://mcp.clearskies.cc/.well-known/oauth-authorization-server
+  dynamic_client_registration: https://mcp.clearskies.cc/oauth/register
+  scopes: [openid, profile, email]
+  detail: authentication/scratchpad-authentication.yml
+
+data_sources:
+  note: Systems Clearskies unifies behind the one MCP endpoint, with status as published on
+    https://clearskies.cc/integrations on 2026-08-13.
+  live: [Salesforce, HubSpot, Gong, Scratchpad, Fathom, Granola, Gmail, Outlook,
+    Google Calendar, Outlook Calendar, Slack, Linear, Jira, Pylon]
+  beta: [Fireflies, Microsoft Teams]
+  roadmap: [Attio, Intercom, Zendesk, Notion, Snowflake]
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/mcp
+  method: POST tools/list
+  http_status: 401
+  result: OAuth challenge - endpoint is live and spec-correct, tool list auth-gated
+- fetched: '2026-08-13'
+  url: https://mcp.clearskies.cc/.well-known/oauth-protected-resource
+  http_status: 200
+  content_type: application/json
+- fetched: '2026-08-13'
+  url: https://clearskies.cc/docs/building-with-clearskies/mcp-server.md
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://status.scratchpad.com/api/v2/summary.json
+  http_status: 200
+  result: components include "Clearskies" alongside the Scratchpad workspace components
