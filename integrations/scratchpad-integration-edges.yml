@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/scratchpad/integrations
+- https://n8n.io/integrations/scratchpad/
+- https://composio.dev/toolkits/scratchpad
+- https://monid.ai/tools/scratchpad
+checked:
+- https://composio.dev/toolkits/scratchpad
+- https://monid.ai/tools/scratchpad
+- https://n8n.io/integrations/scratchpad/
+- https://zapier.com/apps/scratchpad/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
