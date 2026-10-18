@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/scratchpad/integrations
 - https://n8n.io/integrations/scratchpad/
@@ -10,7 +10,43 @@ checked:
 - https://monid.ai/tools/scratchpad
 - https://n8n.io/integrations/scratchpad/
 - https://zapier.com/apps/scratchpad/integrations
+- slack/integrations/slack-integration-edges.yml
+- zoom/integrations/zoom-integration-edges.yml
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/AKSPMLN8K-scratchpad
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Scratchpad
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/R2b9JhyTQ9qpT8V7olWTgQ
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Scratchpad AI Sales Assistant
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
 templates: []
